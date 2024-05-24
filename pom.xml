@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+  <name>Computação Bio Inspirada - Parent Pom</name>
+
+  <description>
+    Small project that holds implementations from classes from the discipline
+  </description>
+
+  <groupId>br.ufu.compbioinspirada</groupId>
+  <artifactId>ag-cryptarithmetic-parent</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <properties>
+    <version.junit>5.8.1</version.junit>
+    <!-- project build properties -->
+    <maven.compiler.source>20</maven.compiler.source>
+    <maven.compiler.target>20</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <!-- maven plugins -->
+    <version.maven.compiler.plugin>3.8.1</version.maven.compiler.plugin>
+    <version.maven.checkstyle.plugin>3.1.1</version.maven.checkstyle.plugin>
+    <version.maven.source.plugin>3.0.1</version.maven.source.plugin>
+    <version.maven.javadoc.plugin>3.3.1</version.maven.javadoc.plugin>
+  </properties>
+
+  <modules>
+    <module>ag-cryptarithmetic</module>
+    <module>automata</module>
+    <module>trabalho-final</module>
+  </modules>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter</artifactId>
+        <version>${version.junit}</version>
+        <scope>test</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${version.maven.compiler.plugin}</version>
+        <configuration>
+          <release>${project.compile.java.version}</release>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <version>${version.maven.checkstyle.plugin}</version>
+        <executions>
+          <execution>
+            <id>validate</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+            <configuration>
+              <checkstyleRules>
+                <module name="Checker">
+                  <!-- Checks for whitespace. -->
+                  <module name="FileTabCharacter">
+                    <property name="severity" value="error"/>
+                    <property name="eachLine" value="true"/>
+                  </module>
+                  <module name="TreeWalker">
+                    <!-- Import settings: getting rid of redundant import, forbid star notation, defined order of imports. -->
+                    <module name="RedundantImport"/>
+                    <module name="AvoidStarImport">
+                      <property name="allowClassImports" value="false"/>
+                      <property name="allowStaticMemberImports" value="false"/>
+                    </module>
+                    <module name="CustomImportOrder">
+                      <property name="customImportOrderRules"
+                                value="STANDARD_JAVA_PACKAGE###SPECIAL_IMPORTS###THIRD_PARTY_PACKAGE###STATIC"/>
+                      <property name="specialImportsRegExp" value="^javax\."/>
+                      <property name="standardPackageRegExp" value="^java\."/>
+                      <property name="sortImportsInGroupAlphabetically" value="true"/>
+                      <property name="separateLineBetweenGroups" value="true"/>
+                    </module>
+                    <module name="UnusedImports"/>
+                    <module name="NeedBraces">
+                      <property name="tokens"
+                                value="LITERAL_IF, LITERAL_ELSE, LITERAL_FOR, LITERAL_WHILE, LITERAL_DO"/>
+                    </module>
+                    <module name="EqualsHashCode"/>
+                  </module>
+                </module>
+              </checkstyleRules>
+              <outputFile>${project.build.directory}/checkstyle.log</outputFile>
+              <includeTestSourceDirectory>true</includeTestSourceDirectory>
+              <includeResources>true</includeResources>
+              <includeTestResources>true</includeTestResources>
+              <consoleOutput>true</consoleOutput>
+              <logViolationsToConsole>true</logViolationsToConsole>
+              <failsOnError>true</failsOnError>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>${version.maven.source.plugin}</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar-no-fork</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>${version.maven.javadoc.plugin}</version>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <phase>package</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
