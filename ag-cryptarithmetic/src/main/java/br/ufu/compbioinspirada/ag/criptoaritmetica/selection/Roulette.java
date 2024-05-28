@@ -11,9 +11,7 @@ import br.ufu.compbioinspirada.ag.criptoaritmetica.Crossover;
 import br.ufu.compbioinspirada.ag.criptoaritmetica.Helper;
 import br.ufu.compbioinspirada.ag.criptoaritmetica.Mutation;
 import br.ufu.compbioinspirada.ag.criptoaritmetica.objects.Input;
-import br.ufu.compbioinspirada.ag.criptoaritmetica.objects.Item;
 import br.ufu.compbioinspirada.ag.criptoaritmetica.objects.Population;
-import br.ufu.compbioinspirada.ag.criptoaritmetica.objects.Report;
 
 public class Roulette {
 

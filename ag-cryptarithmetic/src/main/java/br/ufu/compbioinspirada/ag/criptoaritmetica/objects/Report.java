@@ -1,6 +1,5 @@
 package br.ufu.compbioinspirada.ag.criptoaritmetica.objects;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Report {

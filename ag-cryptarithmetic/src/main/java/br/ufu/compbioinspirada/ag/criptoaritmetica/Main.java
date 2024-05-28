@@ -1,6 +1,7 @@
 package br.ufu.compbioinspirada.ag.criptoaritmetica;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 
 import br.ufu.compbioinspirada.ag.criptoaritmetica.objects.Input;
@@ -27,6 +28,8 @@ public class Main {
 
         int numberOfExecutions = 200 ;
         int numberOfExecutionsCounter = 1;
+
+
 
 //        while (numberOfExecutionsCounter <= numberOfExecutions) {
 //            // ##ROULETTE BEGINS
@@ -127,6 +130,9 @@ public class Main {
             if (hasEneded) {
                 System.exit(0);
             }
+
+            System.out.println(Arrays.asList(population.getItems() ));
+            System.exit(0);
 
             int counter = 1;
             while (counter <= input.getGenerations()) {
